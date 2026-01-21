@@ -5,6 +5,10 @@ html {
 * { margin:0; padding:0; box-sizing: border-box; }
 body { font-family: 'Inter', sans-serif; color: var(--text); background: #fdfdfd; line-height: 1.6; }
 
+section {
+    /* Header ki height ke hisab se ise adjust karein (usually 70px to 100px) */
+    scroll-margin-top: 80px; 
+}
 
 .container { max-width: 1200px; margin: auto; padding: 0 20px; }
 
@@ -579,23 +583,33 @@ form input:focus { border-color: #ff5722; }
     color: #fff;
 }
 
-.contact-map {
-    min-height: 400px;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
 /* Responsive */
 @media (max-width: 992px) {
     .contact-wrapper {
         grid-template-columns: 1fr;
     }
-    .contact-map {
-        height: 300px;
-    }
 }
 
+/* Map Container ko full width banana */
+.map-container {
+    width: 100%;
+    overflow: hidden; /* Bahar nikalne wale hisse ko kaat dega */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+/* iframe ko batana ki wo hamesha container ke andar rahe */
+.map-container iframe {
+    width: 100% !important; /* Forcefully screen ke andar rakhega */
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .map-container iframe {
+        height: 300px; /* Mobile par height thodi kam kar di */
+    }
+}
 
 
 
