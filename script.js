@@ -12,6 +12,39 @@ mobileMenu.addEventListener('click', () => {
     icon.classList.toggle('fa-times');
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("welcomeModal");
+    const closeBtn = document.getElementById("closeBtn");
+    const closeIcon = document.querySelector(".close-icon");
+
+    // Page load hone ke 1 seconds baad dikhayen
+    setTimeout(() => {
+        modal.style.display = "flex";
+    }, 1000);
+
+    const closeModal = () => {
+        modal.style.opacity = "0";
+        setTimeout(() => modal.style.display = "none", 300);
+    };
+
+    closeBtn.addEventListener("click", closeModal);
+    closeIcon.addEventListener("click", closeModal);
+
+    // FIX: Screen (Background Overlay) par click karne se hat jaye
+    modal.addEventListener("click", (e) => {
+        // Agar click 'modal-overlay' par hua hai (content ke bahar), toh band ho jaye
+        if (e.target.classList.contains('modal-overlay')) {
+            closeModal();
+        }
+    });
+});
+
+
+
+
+
+
+
 // Close menu when a link is clicked (for mobile)
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
@@ -155,6 +188,14 @@ faqItems.forEach(item => {
         });
 
         // Current item ko toggle karne ke liye
+        item.classList.toggle('active');
+    });
+});
+
+
+document.querySelectorAll('.policy-header').forEach(header => {
+    header.addEventListener('click', () => {
+        const item = header.parentElement;
         item.classList.toggle('active');
     });
 });
