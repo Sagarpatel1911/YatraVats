@@ -1567,6 +1567,34 @@ form input:focus {
         transform: translateY(0);
     }
 }
+/* Mobile Optimization for Home Banner */
+@media (max-width: 768px) {
+    #home_banner {
+        height: 350px !important; /* Mobile par banner ki height fix */
+        overflow: hidden;
+    }
+
+    #kenburns_slider, .carousel-inner, .carousel-inner .item {
+        height: 100% !important;
+    }
+
+    #kenburns_slider .item img {
+        height: 100% !important;
+        width: 100% !important;
+        object-fit: cover; /* Photo stretch nahi hogi, perfectly fit hogi */
+        object-position: center;
+    }
+
+    .slide-text h1 {
+        font-size: 24px !important; /* Mobile par heading choti karein */
+        padding: 0 15px;
+        line-height: 1.2;
+    }
+    
+    .control {
+        display: none; /* Mobile par arrows hatayein taaki clean dikhe, swipe kaam karega */
+    }
+}
 
 
 
@@ -2066,3 +2094,4 @@ form input:focus {
     transform: rotate(180deg);
     color: #ff5722;
 }
+
