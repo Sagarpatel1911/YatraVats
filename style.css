@@ -1212,7 +1212,7 @@ form input:focus {
 
 .flex-bottom {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -1567,35 +1567,41 @@ form input:focus {
         transform: translateY(0);
     }
 }
+
 /* Mobile Optimization for Home Banner */
 @media (max-width: 768px) {
     #home_banner {
-        height: 350px !important; /* Mobile par banner ki height fix */
+        height: 350px !important;
+        /* Mobile par banner ki height fix */
         overflow: hidden;
     }
 
-    #kenburns_slider, .carousel-inner, .carousel-inner .item {
+    #kenburns_slider,
+    .carousel-inner,
+    .carousel-inner .item {
         height: 100% !important;
     }
 
     #kenburns_slider .item img {
         height: 100% !important;
         width: 100% !important;
-        object-fit: cover; /* Photo stretch nahi hogi, perfectly fit hogi */
+        object-fit: cover;
+        /* Photo stretch nahi hogi, perfectly fit hogi */
         object-position: center;
     }
 
     .slide-text h1 {
-        font-size: 24px !important; /* Mobile par heading choti karein */
+        font-size: 24px !important;
+        /* Mobile par heading choti karein */
         padding: 0 15px;
         line-height: 1.2;
     }
-    
+
     .control {
-        display: none; /* Mobile par arrows hatayein taaki clean dikhe, swipe kaam karega */
+        display: none;
+        /* Mobile par arrows hatayein taaki clean dikhe, swipe kaam karega */
     }
 }
-
 
 
 .about-us-section {
@@ -1713,121 +1719,6 @@ form input:focus {
 }
 
 
-
-/* About Home Snippet Section */
-.about-home-snippet {
-    padding: 80px 0;
-    background: #fdfdfd;
-}
-
-.snippet-content-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    /* Mobile par stack karne ke liye */
-    align-items: center;
-    gap: 40px;
-}
-
-.snippet-image {
-    flex: 1;
-    min-width: 280px;
-    /* Small screens par chhota na ho */
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.snippet-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 15px;
-    object-fit: cover;
-}
-
-.name-overlay {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background: rgba(255, 87, 34, 0.9);
-    /* Orange translucent background */
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-.snippet-text {
-    flex: 2;
-    /* Image se zyada space lega */
-    min-width: 300px;
-}
-
-.snippet-text h4 {
-    color: #ff5722;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 10px;
-}
-
-.snippet-text h2 {
-    font-size: 38px;
-    color: #2c3e50;
-    margin-bottom: 20px;
-    line-height: 1.3;
-}
-
-.snippet-text h2 span {
-    color: #ff5722;
-}
-
-.snippet-text p {
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 15px;
-}
-
-.read-more-btn {
-    margin-top: 25px;
-    display: inline-flex;
-    /* Icon ke saath alignment ke liye */
-    align-items: center;
-    gap: 8px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .snippet-content-wrap {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .snippet-image {
-        max-width: 80%;
-        /* Mobile par image thodi choti */
-    }
-
-    .snippet-text h2 {
-        font-size: 30px;
-    }
-
-    .name-overlay {
-        font-size: 16px;
-        bottom: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        /* Center the name overlay */
-    }
-}
-
-@media (max-width: 480px) {
-    .snippet-image {
-        max-width: 100%;
-    }
-}
 
 
 
@@ -2094,4 +1985,3 @@ form input:focus {
     transform: rotate(180deg);
     color: #ff5722;
 }
-
