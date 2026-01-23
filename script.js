@@ -1,5 +1,3 @@
-
-
 // Mobile Menu Toggle Logic
 const mobileMenu = document.getElementById('mobile-menu');
 const navLinks = document.querySelector('.nav-links');
@@ -50,9 +48,9 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('active');
         // Toggle Icon between Bars and X
-    const icon = mobileMenu.querySelector('i');
-    icon.classList.toggle('fa-bars');
-    icon.classList.toggle('fa-times');
+        const icon = mobileMenu.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
     });
 });
 
@@ -93,41 +91,14 @@ document.getElementById('queryForm').addEventListener('submit', function (e) {
     const waLink = `https://wa.me/916263777672?text=New%20Inquiry!%0AName:%20${name}%0APhone:%20${phone}%0ADestination:%20${dest}%0AMessage:%20${msg}`;
 
     window.open(waLink, '_blank');
-});
-
-
-document.getElementById('queryForm').addEventListener('submit', function(e) {
-    // ... your existing code ...
-    window.open(waLink, '_blank');
     this.reset(); // Adds a clean finish
 });
 
 
-function openItinerary(tourName) {
-    alert("Hi! " + tourName + " ki detailed itinerary download ho rahi hai... (In Real Web, yahan PDF khulegi)");
-    // Aap yahan direct PDF link bhi de sakte hain:
-    // window.open('pdf/' + tourName + '.pdf');
-}
 
+
+// 1. Tour Data Object (Kashmir add kiya gaya hai)
 const tourData = {
-    kedarnath: {
-        title: "Kedarnath Dham Yatra Plan",
-        plan: [
-            { day: "Day 1", desc: "Haridwar arrival and evening Ganga Aarti." },
-            { day: "Day 2", desc: "Drive to Guptkashi, check-in to hotel." },
-            { day: "Day 3", desc: "Trek to Kedarnath Ji, night stay at base camp." },
-            { day: "Day 4", desc: "Morning Darshan and trek back to Sonprayag." },
-            { day: "Day 5", desc: "Return to Haridwar/Rishikesh and departure." }
-        ]
-    },
-    kashmir: {
-        title: "Kashmir Paradise Plan",
-        plan: [
-            { day: "Day 1", desc: "Srinagar arrival and Shikara ride." },
-            { day: "Day 2", desc: "Srinagar to Gulmarg day trip." },
-            { day: "Day 3", desc: "Pahalgam visit and Betab Valley." }
-        ]
-    },
     goa: {
         title: "Goa Beach Party Plan",
         plan: [
@@ -135,9 +106,21 @@ const tourData = {
             { day: "Day 2", desc: "Water sports and Scuba Diving." },
             { day: "Day 3", desc: "South Goa heritage tour and departure." }
         ]
+    },
+    kashmir: {
+        title: "Kashmir Paradise Tour Plan",
+        plan: [
+            { day: "Day 1", desc: "Srinagar arrival and Dal Lake Shikara ride." },
+            { day: "Day 2", desc: "Full day trip to Gulmarg (Gondola ride)." },
+            { day: "Day 3", desc: "Srinagar to Pahalgam sightseeing." },
+            { day: "Day 4", desc: "Aru Valley and Betaab Valley exploration." },
+            { day: "Day 5", desc: "Sonmarg Glacier visit." },
+            { day: "Day 6", desc: "Shopping in Srinagar and departure." }
+        ]
     }
 };
 
+// 2. Optimized openItinerary Function
 function openItinerary(tourId) {
     const modal = document.getElementById("itineraryModal");
     const body = document.getElementById("modalBody");
@@ -147,28 +130,44 @@ function openItinerary(tourId) {
         let html = `<h2>${data.title}</h2><hr><br>`;
         data.plan.forEach(item => {
             html += `
-                <div class="itinerary-day">
-                    <h4>${item.day}</h4>
-                    <p>${item.desc}</p>
+                <div class="itinerary-day" style="margin-bottom: 15px; border-left: 3px solid #ff5722; padding-left: 10px;">
+                    <h4 style="color: #ff5722; margin-bottom: 5px;">${item.day}</h4>
+                    <p style="font-size: 14px; color: #555;">${item.desc}</p>
                 </div>`;
         });
-        html += `<a href="https://wa.me/916263777672" class="btn-book" style="display:block; margin-top:20px;">Confirm Booking on WhatsApp</a>`;
+        
+        // WhatsApp link ko dynamic banaya gaya hai taaki tour ka naam bhi jaye
+        const waMsg = `I am interested in ${data.title}`;
+        html += `<a href="https://wa.me/916263777672?text=${encodeURIComponent(waMsg)}" 
+                    class="btn-book" 
+                    style="display:block; margin-top:20px; text-decoration:none; text-align:center;">
+                    Confirm Booking on WhatsApp
+                 </a>`;
+        
         body.innerHTML = html;
         modal.style.display = "block";
+    } else {
+        console.error("Tour data not found for: " + tourId);
     }
 }
 
+// 3. Close Modal Function
 function closeModal() {
     document.getElementById("itineraryModal").style.display = "none";
 }
 
-// Modal ke bahar click karne par close ho jaye
-window.onclick = function (event) {
-    let modal = document.getElementById("itineraryModal");
-    if (event.target == modal) {
-        modal.style.display = "none";
+// 4. Background Click to Close (Fixed Logic)
+window.addEventListener('click', function (event) {
+    const itineraryModal = document.getElementById("itineraryModal");
+    const welcomeModal = document.getElementById("welcomeModal");
+
+    if (event.target === itineraryModal) {
+        itineraryModal.style.display = "none";
     }
-}
+    if (event.target === welcomeModal) {
+        welcomeModal.style.display = "none";
+    }
+});
 
 
 
